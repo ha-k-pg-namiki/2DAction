@@ -12,7 +12,6 @@ extern enum SceneStep
 	Init,
 	Run,
 	Finish,
-	//KnockDownBoss,
 };
 
 extern SceneKind g_SceneKind;

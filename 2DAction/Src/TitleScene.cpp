@@ -1,6 +1,7 @@
 #include "TitleScene.h"
 #include "enum.h"
 #include "Engine/Engine.h"
+#include "Button.h"
 
 void InitTitleScene();
 void RunTitleScene();
@@ -10,6 +11,9 @@ void InitTitleScene()
 {
 	// 入力データの更新
 	Engine::Update();
+
+	// テクスチャ読み込み
+	Engine::LoadTexture("StartButton", "Res/Button.png");
 
 	g_SceneStep = SceneStep::Run;
 }
@@ -43,6 +47,11 @@ void RunTitleScene()
 			g_SceneStep = SceneStep::Finish;
 		}
 	}
+
+	OnCursor();
+
+	UpdateButton();
+
 }
 
 void FinishTitleScene()
@@ -51,6 +60,8 @@ void FinishTitleScene()
 	Engine::Update();
 
 	// 後始末
+	// 読み込んだテクスチャの解放
+	Engine::ReleaseTexture("StartButton");
 
 	// ステップをInitに変更(次のシーンのための初期化)
 	g_SceneStep = SceneStep::Init;
